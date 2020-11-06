@@ -18,7 +18,7 @@ router.post('/', (req, res) => {
 
     axios.post(URL, program)
         .then(response => {
-            console.table(response.data);
+            // console.table(response.data);
             res.status(200).json(response.data);
         })
         .catch(error => {
