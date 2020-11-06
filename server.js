@@ -3,6 +3,7 @@ require("dotenv").config();
 
 // Router Imports
 const executeRouter = require('./Routers/execute');
+const shareRouter = require("./Routers/share");
 
 const app = express();
 
