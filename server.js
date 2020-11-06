@@ -1,7 +1,7 @@
 const express = require("express");
 require("dotenv").config();
-const fs = require('fs');
 const path = require('path')
+const rfs = require('rotating-file-stream');
 
 const logger = require("morgan");
 const helmet = require("helmet");
@@ -13,9 +13,11 @@ const shareRouter = require("./Routers/share");
 const app = express();
 
 // FileStream for server access logging
-const accessLogStream = fs.createWriteStream(path.join(__dirname, 'access.log'), {
-    flags: 'a'
-});
+const accessLogStream = rfs.createStream('access.log', {
+    interval: '1d', // rotate daily
+    path: path.join(__dirname, 'log'), // path to store the log files
+    compress: "gzip" // compress rotated files
+})
 
 // Middleware
 app.use(express.json());
