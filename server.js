@@ -24,6 +24,7 @@ app.use(express.json());
 app.use(logger('combined', {
     stream: accessLogStream
 }));
+app.use(helmet()); // helmet: Not a silver bullet but helps in securing the server headers
 
 // Routers
 app.use('/execute', executeRouter);
