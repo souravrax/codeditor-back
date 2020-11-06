@@ -1,8 +1,8 @@
 {
   "name": "CodeEditorProject",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "Backend of the online code editor project",
+  "main": "server.js",
   "scripts": {
     "start": "node server.js",
     "dev": "nodemon server.js"
@@ -11,10 +11,10 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "axios": "^0.21.0",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "helmet": "^4.2.0",
-    "morgan": "^1.10.0",
-    "request": "^2.88.2"
+    "morgan": "^1.10.0"
   }
 }
