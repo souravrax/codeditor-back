@@ -5,6 +5,7 @@ const rfs = require('rotating-file-stream');
 
 const logger = require("morgan");
 const helmet = require("helmet");
+const cors = require('cors');
 
 // Router Imports
 const executeRouter = require('./Routers/execute');
@@ -25,10 +26,21 @@ app.use(logger('combined', {
     stream: accessLogStream
 }));
 app.use(helmet()); // helmet: Not a silver bullet but helps in securing the server headers
+app.use(cors());
 
 // Routers
 app.use('/execute', executeRouter);
 app.use('/share', shareRouter);
+
+
+app.post('/', (req, res) => {
+    let ans = "";
+    for(let i in req.body) {
+        ans += req.body[i]
+    }
+    console.log(ans);
+    res.send(ans);
+});
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
