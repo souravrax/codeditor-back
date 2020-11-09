@@ -21,10 +21,11 @@ db.once("open", () => {
 });
 
 router.post("/export", (req, res) => {
-    const { code, input } = req.body;
+    const { code, input, language } = req.body;
     const entry = new SharedCode({
         code: code,
         input: input,
+        language: language,
     });
     entry.save((err, doc) => {
         if (err) {
@@ -32,6 +33,7 @@ router.post("/export", (req, res) => {
         }
         console.log(doc);
         res.status(200).json({
+            success: true,
             id: doc["_id"]
         });
     });
@@ -44,9 +46,22 @@ router.post("/import", (req, res) => {
             _id: id,
         },
         (err, doc) => {
-            if (err) return console.error(err);
-            console.log("Response send");
-            res.status(200).json(doc[0]);
+            if (err) {
+                console.error(err);
+                res.status(500).json({
+                    success: false
+                });
+            }
+            if (doc.length == 0) {
+                res.status(200).json({
+                    success: false,
+                })
+            } else {
+                res.status(200).json({
+                    success: true,
+                    data: doc[0]
+                })
+            }
         }
     );
 });
