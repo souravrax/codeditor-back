@@ -1,5 +1,7 @@
 # CodEditor Backend
 
+![Build and deploy Node.js app to Azure Web App - codeditorapi](https://github.com/souravrax/codeditor-back/workflows/Build%20and%20deploy%20Node.js%20app%20to%20Azure%20Web%20App%20-%20codeditorapi/badge.svg)
+
 This repository is the backend of the CodEditor online editor project
 
 ## Installation
