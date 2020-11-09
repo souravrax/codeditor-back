@@ -1,9 +1,54 @@
-const express = require('express')
+const express = require("express");
 const router = express.Router();
+const assert = require("assert");
 
-router.post('/', (req, res)=>{
-    console.log(req.body);
-    res.status(200).send("Will be available sortly");
-})
+const mongoose = require("mongoose");
+const SharedCode = require("../models/sharedCodeModel");
+
+const DB_CONNECTION = process.env.DB_URL;
+
+// Mongoose connection
+mongoose.connect(DB_CONNECTION, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    useFindAndModify: false,
+    useCreateIndex: true,
+});
+const db = mongoose.connection;
+db.on("error", console.error.bind(console, "Connection error:"));
+db.once("open", () => {
+    console.log("Connected to database");
+});
+
+router.post("/export", (req, res) => {
+    const { code, input } = req.body;
+    const entry = new SharedCode({
+        code: code,
+        input: input,
+    });
+    entry.save((err, doc) => {
+        if (err) {
+            return console.error(err);
+        }
+        console.log(doc);
+        res.status(200).json({
+            id: doc["_id"]
+        });
+    });
+});
+
+router.post("/import", (req, res) => {
+    const { id } = req.body;
+    SharedCode.find(
+        {
+            _id: id,
+        },
+        (err, doc) => {
+            if (err) return console.error(err);
+            console.log("Response send");
+            res.status(200).json(doc[0]);
+        }
+    );
+});
 
 module.exports = router;

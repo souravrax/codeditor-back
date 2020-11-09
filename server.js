@@ -21,6 +21,7 @@ const accessLogStream = rfs.createStream('access.log', {
 })
 
 // Middleware
+app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(logger('combined', {
     stream: accessLogStream
@@ -35,7 +36,7 @@ app.use('/share', shareRouter);
 
 app.post('/', (req, res) => {
     let ans = "";
-    for(let i in req.body) {
+    for (let i in req.body) {
         ans += req.body[i]
     }
     console.log(ans);

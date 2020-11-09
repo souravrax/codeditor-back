@@ -1,0 +1,58 @@
+{
+    "C": {
+        "code": "c",
+        "version": 4
+    },
+    "Java": {
+        "code": "java",
+        "version": 3
+    },
+    "C++": {
+        "code": "cpp",
+        "version": 4
+    },
+    "C++14": {
+        "code": "cpp14",
+        "version": 3
+    },
+    "C++17": {
+        "code": "cpp17",
+        "version": 0
+    },
+    "Python 2": {
+        "code": "python2",
+        "version": 2
+    },
+    "Python 3": {
+        "code": "python3",
+        "version": 3
+    },
+    "Go": {
+        "code": "go",
+        "version": 3
+    },
+    "C#": {
+        "code": "csharp",
+        "version": 3
+    },
+    "Javascript": {
+        "code": "nodejs",
+        "version": 3
+    },
+    "Kotlin": {
+        "code": "kotlin",
+        "version": 2
+    },
+    "Dart": {
+        "code": "dart",
+        "version": 3
+    },
+    "Rust": {
+        "code": "rust",
+        "version": 3
+    },
+    "Bash": {
+        "code": "bash",
+        "version": 3
+    }
+}
