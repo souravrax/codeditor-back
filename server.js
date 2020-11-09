@@ -33,8 +33,11 @@ app.use(cors());
 app.use('/execute', executeRouter);
 app.use('/share', shareRouter);
 
-app.get('/', (req, res)=>{
-    res.send(`${process.env.CLIENT_ID}, ${process.env.CLIENT_SECRET}, ${process.env.DB_URL}`);
+app.get('/', (req, res) => {
+    res.send(`Hello World, I'm Server!`);
+})
+app.get('/:name', (req, res) => {
+    res.send(`Hello ${req.params.name}`);
 })
 
 app.post('/', (req, res) => {
