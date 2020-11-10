@@ -1,4 +1,4 @@
-"use strict"
+"use strict";
 // Share Router
 const express = require("express");
 const router = express.Router();
@@ -31,10 +31,6 @@ const mapExpireIndexToValues = [
     "1 day",
     "5 days",
 ];
-for (let i of mapExpireIndexToValues) {
-    console.log(ms(i));
-}
-
 //! Share feature
 router.post("/export", (req, res) => {
     const { code, input, language, expireIndex } = req.body;

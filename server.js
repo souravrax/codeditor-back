@@ -27,8 +27,7 @@ app.use(logger('combined', {
     stream: accessLogStream
 }));
 app.use(helmet()); // helmet: Not a silver bullet but helps in securing the server headers
-app.use(cors());
-
+app.options('*', cors());
 
 // Routers
 app.use('/execute', executeRouter);
