@@ -8,7 +8,6 @@ const SharedCodeSchema = new Schema({
     },
     input: {
         type: String,
-        required: true,
     },
     language: {
         type: String,
@@ -17,10 +16,12 @@ const SharedCodeSchema = new Schema({
     date: {
         type: Date,
         default: Date.now,
+        required: true,
     },
     expire_at: {
         type: Date,
         default: Date.now,
+        required: true,
     },
 });
 
