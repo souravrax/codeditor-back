@@ -8,7 +8,7 @@ const URL = process.env.URL;
 
 const mapLanguageToCode = require("../res/mapLanguageToCode.json");
 
-router.post("/", (req, res) => {
+router.post("/", async (req, res) => {
     const { code, language, input, cArgs } = req.body;
     const program = {
         script: code,
@@ -19,15 +19,26 @@ router.post("/", (req, res) => {
         clientSecret: clientSecret,
     };
     console.log("Execute Called:", program);
-    axios
-        .post(URL, program)
-        .then((response) => {
-            console.log("Responding with:", response.data);
-            res.status(200).json(response.data);
+    try {
+
+        const response = await axios({
+            method: "post",
+            url: URL,
+            data: program,
+            headers: {
+                "Content-Type": "application/json",
+            },
+            timeout: 5000,
+            validateStatus: (status) => {
+                return status >= 200 && status < 300;
+            },
         })
-        .catch((error) => {
-            res.status(400).sendStatus(error);
-        });
+        return res.status(200).json(response.data);
+
+    } catch (error) {
+        console.error(error);
+        return res.status(400).sendStatus(error);
+    }
 });
 
 module.exports = router;

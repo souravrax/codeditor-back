@@ -17,10 +17,8 @@ const DB_CONNECTION = process.env.DB_URL;
 
 // Mongoose connection
 mongoose.connect(DB_CONNECTION, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-    useFindAndModify: false,
-    useCreateIndex: true,
+    ssl: true,
+    tls: true,
 });
 const db = mongoose.connection;
 db.on("error", console.error.bind(console, "Connection error:"));
