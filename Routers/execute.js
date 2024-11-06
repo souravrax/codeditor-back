@@ -18,7 +18,7 @@ router.post("/", async (req, res) => {
         clientId: clientId,
         clientSecret: clientSecret,
     };
-    console.log("Execute Called:", program);
+    console.log("Execute Called:", JSON.stringify(program));
     try {
 
         const response = await axios({
