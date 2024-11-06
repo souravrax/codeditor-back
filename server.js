@@ -34,7 +34,7 @@ app.use('/execute', executeRouter);
 app.use('/share', shareRouter);
 
 app.get('/', (req, res) => {
-    res.send(`Hello World, I'm Server!`);
+    res.send(`Hello World, I'm Code Editor Backend!`);
 })
 app.get('/:name', (req, res) => {
     res.send(`Hello ${req.params.name}`);
@@ -53,3 +53,5 @@ const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
     console.log(`Running at PORT: ${PORT}`);
 });
+
+module.exports = app;
