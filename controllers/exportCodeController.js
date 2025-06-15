@@ -12,7 +12,7 @@ const mapExpireIndexToValues = [
     "5 days",
 ]; // Available expiry times
 
-const controller = (
+const controller = async (
     { code, input, language, expireIndex },
     res,
     SharedCode
@@ -62,16 +62,20 @@ const controller = (
         }); // the data to be saved in the database
 
         //? Inserting the data to database
-        entry.save((err, doc) => {
-            if (err) {
-                return console.error(err);
-            }
+        try {
+            const doc = await entry.save();
             console.log(doc);
             res.status(200).json({
                 success: true,
                 id: doc["_id"],
             });
-        }); // Saving the data
+        } catch (err) {
+            console.error(err);
+            res.status(500).json({
+                success: false,
+                message: "Error saving code to database.",
+            });
+        }
     }
 };
 
